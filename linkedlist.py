@@ -23,12 +23,14 @@ class LinkedList:
         # Append given items
         if items is not None:
             for item in items:
+                #print ("this is " + item)
                 self.append(item)
 
     def __repr__(self):
         """Return a string representation of this linked list."""
         ll_str = ""
         for item in self.items():
+            print("the item is " + item)
             ll_str += f'({item}) -> '
         return ll_str
 
@@ -44,6 +46,7 @@ class LinkedList:
             items.append(node.data)  # O(1) time (on average) to append to list
             # Skip to next node to advance forward in linked list
             node = node.next  # O(1) time to reassign variable
+            #print(node)
         # Now list contains items from all nodes
         return items  # O(1) time to return list
 
@@ -60,7 +63,7 @@ class LinkedList:
         count = 0
         temp = self.head
         while temp != None:
-            count++
+            count = count + 1
             temp = temp.next
         return count
 
@@ -70,16 +73,31 @@ class LinkedList:
         
         # TODO: Create new node to hold given item
         new_node = Node(item)
+        # print ("node being appended is ") 
+        # print(new_node)
 
         # TODO: If self.is_empty() == True set the head and the tail to the new node
         if self.is_empty() == True:
+            # print("linked list is empty...so let's assign new head and tail values")
             self.head = new_node
             self.tail = new_node
+            # print (self.head)
+            # print (self.tail)
+            # print ("++++++++++++++++++++++")
 
         # TODO: Else append node after tail
         else:
+            # print("linked list is NOT empty....")
+            self.tail.next = new_node
+            # print ("self.tail.next is updated to ")
+            # print (self.tail.next)
             self.tail = new_node
-            self.tail.next= new_node
+            # print ("self.tail is updated to ") 
+            # print (self.tail)
+            # print ("++++++++++++++++++++++")
+
+        #print (self.head)
+        #print (self.tail)
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
@@ -136,7 +154,7 @@ class LinkedList:
         current = self.head.next
 
         while current != None:
-            if curent.data == item:
+            if current.data == item:
                 if current == self.tail:
                     self.tail = previous
                 previous.next = current.next 
