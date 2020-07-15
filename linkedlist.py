@@ -69,7 +69,7 @@ class LinkedList:
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(1) because we simply need to change the head and tail node. The size of the linkedin list is irrelevant"""
+        TODO: Running time: O(1) because we simply need to change the head and tail node or hcnage the tail node and its next node. The size of the linkedin list is irrelevant"""
         
         # TODO: Create new node to hold given item
         new_node = Node(item)
@@ -101,7 +101,7 @@ class LinkedList:
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) Under any circumstances, we're are merely changing the head and/or tail node value.  These are constant time oeprations"""
         
         # TODO: Create new node to hold given item
         new_node = Node(item)
