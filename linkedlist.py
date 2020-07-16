@@ -136,7 +136,8 @@ class LinkedList:
 
         #case 1: linked list is empty
         if self.head == None and self.tail == None:
-            return ValueError('Item not found: {}'.format(item))
+
+            raise ValueError('Item not found: {}'.format(item))
 
         #case 2: only one node exist, which is both tail and head
         if self.head == self.tail:
@@ -162,13 +163,32 @@ class LinkedList:
             previous = current
             current = current.next
 
-        return ValueError('Item not found: {}'.format(item))
+        raise ValueError('Item not found: {}'.format(item))
         
 
 
 if __name__ == "__main__":
-    my_ll = LinkedList(["A", "B", "C"])
-    print(my_ll)
+    # my_ll = LinkedList(["A", "B", "C"])
+    # print(my_ll)
+    ll = LinkedList(['A', 'B', 'C'])
+    assert ll.head.data == 'A'  # First item
+    assert ll.tail.data == 'C'  # Last item
+    ll.delete('A')
+    assert ll.head.data == 'B'  # New head
+    assert ll.tail.data == 'C'  # Unchanged
+    ll.delete('C')
+    assert ll.head.data == 'B'  # Unchanged
+    assert ll.tail.data == 'B'  # New tail
+    ll.delete('B')
+    assert ll.head is None  # No head
+    assert ll.tail is None  # No tail
+    #Delete should raise error if item was already deleted
+    with self.assertRaises(ValueError):
+        ll.delete('A')  # Item no longer in list
+    with self.assertRaises(ValueError):
+        ll.delete('B')  # Item no longer in list
+    with self.assertRaises(ValueError):
+        ll.delete('C')  # Item no longer in list
 
 
 
